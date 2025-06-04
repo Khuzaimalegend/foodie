@@ -1,0 +1,44 @@
+#:import MDScrollView kivymd.uix.scrollview.MDScrollView
+#:import MDCard kivymd.uix.card.MDCard
+
+<MainScreen>:
+    name: "main"
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: app.theme_cls.bg_dark
+        MDTopAppBar:
+            title: "🍔 FoodSnap Deluxe"
+            elevation: 4
+            left_action_items: [["camera", lambda x: root.snap_food()]]
+            md_bg_color: app.theme_cls.primary_color
+            specific_text_color: app.theme_cls.accent_color
+        MDScrollView:
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(16)
+                spacing: dp(16)
+                MDCard:
+                    size_hint: None, None
+                    size: root.width - dp(32), dp(200)
+                    md_bg_color: app.theme_cls.primary_light
+                    radius: [20,]
+                    elevation: 8
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        padding: dp(16)
+                        MDLabel:
+                            id: result_label
+                            text: "Snap a photo, you magnificent glutton 🍕"
+                            halign: "center"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color: app.theme_cls.text_color
+                MDBoxLayout:
+                    size_hint_y: None
+                    height: dp(60)
+                    MDRaisedButton:
+                        text: "📷 Snap Now"
+                        pos_hint: {"center_x": 0.5}
+                        on_release: root.snap_food()
